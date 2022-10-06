@@ -981,6 +981,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 202deaa25df85e54cb14c85aa1b48548, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  arena: ArenaTest
+  EquipmentRight: Glaive
+  EquipmentLeft: Glaive
 --- !u!4 &890921128
 Transform:
   m_ObjectHideFlags: 0

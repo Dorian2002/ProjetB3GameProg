@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace PlayerScripts
 {
-    public class Glaive : Equipment
+    public class Hand : Equipment
     {
         public override string Name { get; set; }
         public override string Description { get; set; }
@@ -13,8 +13,8 @@ namespace PlayerScripts
 
         private void Start()
         {
-            Name = "Glaive";
-            Description = "Roman well balanced short sword.";
+            Name = "Hand";
+            Description = "Just your hand";
         }
     }
 }

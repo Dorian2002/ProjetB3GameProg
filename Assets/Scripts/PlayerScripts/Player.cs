@@ -11,28 +11,43 @@ namespace PlayerScripts
         public int MovementSpeed { get; set; }
         public int AttackSpeed { get; set; }
         public Equipment EquipmentRight;
-        private Equipment EquipmentLeft;
-        private Transform RightHand;
-        private Transform LeftHand;
+        public Equipment EquipmentLeft;
+        [SerializeField] private Transform RightHand;
+        [SerializeField] private Transform LeftHand;
+        public Capacity[] Capacities { get; set; }
         private int Level;
         private int Exp;
+        private Animator anim;
 
         private void Start()
         {
-            //EquipmentRight = Resources.Load("Prefabs/Glaive") as Equipment;
             EquipPlayer();
+            anim = GetComponent<Animator>();
         }
 
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.Mouse0)) //Right Click
+            {
+                anim.CrossFade(EquipmentRight.Name,1);
+            }
+            if (Input.GetKeyDown(KeyCode.Mouse1)) // Left Click
+            {
+                anim.CrossFade(EquipmentLeft.Name,1);
+            }
+        }
 
         private void EquipPlayer()
         {
             try
             {
-                Instantiate(EquipmentRight,RightHand);
+                Instantiate(Resources.Load("Prefabs/"+ GameManager.GM.EquipmentRight), RightHand);
+                EquipmentRight = RightHand.gameObject.GetComponentInChildren<Equipment>();
             }catch{}
             try
             {
-                Instantiate(EquipmentLeft, LeftHand.transform);
+                Instantiate(Resources.Load("Prefabs/"+ GameManager.GM.EquipmentLeft), LeftHand);
+                EquipmentLeft = LeftHand.gameObject.GetComponentInChildren<Equipment>();
             }catch{}
         }
     }
