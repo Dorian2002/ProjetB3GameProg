@@ -20,7 +20,6 @@ namespace Menu
 		{
 			//Assign menuPanel to the Panel object in our Canvas
 			//Make sure it's not active when the game starts
-			menuPanel.gameObject.SetActive(false);
 			waitingForKey = false;
 	
 			/*iterate through each child of the panel and check
@@ -33,19 +32,26 @@ namespace Menu
 			for(int i = 0; i < menuPanel.childCount; i++)
 			{
 				if(menuPanel.GetChild(i).name == "Forward")
-					menuPanel.GetChild(i).GetComponentInChildren<TMP_Text>().text = GameManager.GM.forward.ToString();
+					menuPanel.GetChild(i).GetComponentInChildren<Text>().text = GameManager.GM.forward.ToString();
 				else if(menuPanel.GetChild(i).name == "Backward")
-					menuPanel.GetChild(i).GetComponentInChildren<TMP_Text>().text = GameManager.GM.backward.ToString();
+					menuPanel.GetChild(i).GetComponentInChildren<Text>().text = GameManager.GM.backward.ToString();
 				else if(menuPanel.GetChild(i).name == "Left")
-					menuPanel.GetChild(i).GetComponentInChildren<TMP_Text>().text = GameManager.GM.left.ToString();
+					menuPanel.GetChild(i).GetComponentInChildren<Text>().text = GameManager.GM.left.ToString();
 				else if(menuPanel.GetChild(i).name == "Right")
-					menuPanel.GetChild(i).GetComponentInChildren<TMP_Text>().text = GameManager.GM.right.ToString();
+					menuPanel.GetChild(i).GetComponentInChildren<Text>().text = GameManager.GM.right.ToString();
 				else if(menuPanel.GetChild(i).name == "Jump")
-					menuPanel.GetChild(i).GetComponentInChildren<TMP_Text>().text = GameManager.GM.jump.ToString();
+					menuPanel.GetChild(i).GetComponentInChildren<Text>().text = GameManager.GM.jump.ToString();
+				else if(menuPanel.GetChild(i).name == "Capacity1")
+					menuPanel.GetChild(i).GetComponentInChildren<Text>().text = GameManager.GM.capacity1.ToString();
+				else if(menuPanel.GetChild(i).name == "Capacity2")
+					menuPanel.GetChild(i).GetComponentInChildren<Text>().text = GameManager.GM.capacity2.ToString();
+				else if(menuPanel.GetChild(i).name == "Capacity3")
+					menuPanel.GetChild(i).GetComponentInChildren<Text>().text = GameManager.GM.capacity3.ToString();
 			}
+			menuPanel.gameObject.SetActive(false);
 		}
 
-		void DisplayOptions()
+		public void DisplayOptions()
 		{
 			if (menuPanel.gameObject.activeSelf)
 			{
@@ -138,8 +144,23 @@ namespace Menu
 				buttonText.text = GameManager.GM.jump.ToString(); //set button text to new key
 				PlayerPrefs.SetString("jumpKey", GameManager.GM.jump.ToString()); //save new key to playerprefs
 				break;
+			case "capacity1":
+				GameManager.GM.capacity1 = newKey; //set capacity1 to new keycode
+				buttonText.text = GameManager.GM.capacity1.ToString(); //set button text to new key
+				PlayerPrefs.SetString("capacity1Key", GameManager.GM.capacity1.ToString()); //save new key to playerprefs
+				break;
+			case "capacity2":
+				GameManager.GM.capacity2 = newKey; //set capacity2 to new keycode
+				buttonText.text = GameManager.GM.capacity2.ToString(); //set button text to new key
+				PlayerPrefs.SetString("capacity2Key", GameManager.GM.capacity2.ToString()); //save new key to playerprefs
+				break;
+			case "capacity3":
+				GameManager.GM.capacity3 = newKey; //set capacity3 to new keycode
+				buttonText.text = GameManager.GM.capacity3.ToString(); //set button text to new key
+				PlayerPrefs.SetString("capacity3Key", GameManager.GM.capacity3.ToString()); //save new key to playerprefs
+				break;
 			}
-	
+
 			yield return null;
 		}
     }

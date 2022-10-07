@@ -35,6 +35,21 @@ namespace PlayerScripts
             {
                 anim.CrossFade(EquipmentLeft.Name,1);
             }
+            if (Input.GetKeyDown(GameManager.GM.capacity1))
+            {
+                Debug.Log("1");
+               //anim.CrossFade(EquipmentRight.Name,1);
+            }
+            if (Input.GetKeyDown(GameManager.GM.capacity2))
+            {
+                Debug.Log("2");
+                //anim.CrossFade(EquipmentLeft.Name,1);
+            }
+            if (Input.GetKeyDown(GameManager.GM.capacity3))
+            {
+                Debug.Log("3");
+                //anim.CrossFade(EquipmentLeft.Name,1);
+            }
         }
 
         private void EquipPlayer()

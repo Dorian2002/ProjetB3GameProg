@@ -17,6 +17,9 @@ public class GameManager : MonoBehaviour
     public KeyCode backward {get; set;}
     public KeyCode left {get; set;}
     public KeyCode right {get; set;}
+    public KeyCode capacity1 {get; set;}
+    public KeyCode capacity2 {get; set;}
+    public KeyCode capacity3 {get; set;} 
 
     void Awake()
     {
@@ -35,6 +38,9 @@ public class GameManager : MonoBehaviour
         backward = (KeyCode) System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("backwardKey", "S"));
         left = (KeyCode) System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("leftKey", "Q"));
         right = (KeyCode) System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("rightKey", "D"));
+        capacity1 = (KeyCode) System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("capacity1Key", "A"));
+        capacity2 = (KeyCode) System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("capacity2Key", "E"));
+        capacity3 = (KeyCode) System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("capacity3Key", "R"));
     }
 
     private IEnumerator LoadArena()
