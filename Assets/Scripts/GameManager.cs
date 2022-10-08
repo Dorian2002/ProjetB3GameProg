@@ -9,8 +9,10 @@ public class GameManager : MonoBehaviour
 {
     private bool menuing;
     public string arena;
-    public string EquipmentRight;
-    public string EquipmentLeft;
+    public string Equipment;
+    public string Capacity1Name;
+    public string Capacity2Name;
+    public string Capacity3Name;
     public static GameManager GM;
     public KeyCode jump {get; set;}
     public KeyCode forward {get; set;}
@@ -32,6 +34,8 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        Equipment = "Hand";
 
         jump = (KeyCode) System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("jumpKey", "Space"));
         forward = (KeyCode) System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("forwardKey", "Z"));

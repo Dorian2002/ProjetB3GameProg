@@ -10,10 +10,8 @@ namespace PlayerScripts
         public int Hp { get; set; }
         public int MovementSpeed { get; set; }
         public int AttackSpeed { get; set; }
-        public Equipment EquipmentRight;
-        public Equipment EquipmentLeft;
-        [SerializeField] private Transform RightHand;
-        [SerializeField] private Transform LeftHand;
+        public Equipment Equipment;
+        [SerializeField] private Transform Hands;
         public Capacity[] Capacities { get; set; }
         private int Level;
         private int Exp;
@@ -29,25 +27,22 @@ namespace PlayerScripts
         {
             if (Input.GetKeyDown(KeyCode.Mouse0)) //Right Click
             {
-                anim.CrossFade(EquipmentRight.Name,1);
+                anim.CrossFade(Equipment.Name,1);
             }
             if (Input.GetKeyDown(KeyCode.Mouse1)) // Left Click
             {
-                anim.CrossFade(EquipmentLeft.Name,1);
+                anim.CrossFade(Equipment.Name,1);
             }
             if (Input.GetKeyDown(GameManager.GM.capacity1))
             {
-                Debug.Log("1");
                //anim.CrossFade(EquipmentRight.Name,1);
             }
             if (Input.GetKeyDown(GameManager.GM.capacity2))
             {
-                Debug.Log("2");
                 //anim.CrossFade(EquipmentLeft.Name,1);
             }
             if (Input.GetKeyDown(GameManager.GM.capacity3))
             {
-                Debug.Log("3");
                 //anim.CrossFade(EquipmentLeft.Name,1);
             }
         }
@@ -56,13 +51,8 @@ namespace PlayerScripts
         {
             try
             {
-                Instantiate(Resources.Load("Prefabs/"+ GameManager.GM.EquipmentRight), RightHand);
-                EquipmentRight = RightHand.gameObject.GetComponentInChildren<Equipment>();
-            }catch{}
-            try
-            {
-                Instantiate(Resources.Load("Prefabs/"+ GameManager.GM.EquipmentLeft), LeftHand);
-                EquipmentLeft = LeftHand.gameObject.GetComponentInChildren<Equipment>();
+                Instantiate(Resources.Load("Prefabs/"+ GameManager.GM.Equipment), Hands);
+                Equipment = Hands.gameObject.GetComponentInChildren<Equipment>();
             }catch{}
         }
     }

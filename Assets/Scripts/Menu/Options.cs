@@ -13,6 +13,8 @@ namespace Menu
 		Event keyEvent;
 		Text buttonText;
 		KeyCode newKey;
+		[SerializeField] private GameObject subMenu;
+		
 	
 		bool waitingForKey;
 	
@@ -59,6 +61,7 @@ namespace Menu
 			}
 			else
 			{
+				subMenu.gameObject.SetActive(false);
 				menuPanel.gameObject.SetActive(true);
 			}
 		}
