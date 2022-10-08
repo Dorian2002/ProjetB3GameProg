@@ -57,6 +57,11 @@ namespace PlayerScripts
                 }
             }
         }
+        public void ResetAnimation()
+        {
+            anim.SetBool("click0", false);
+            anim.SetBool("click1", false);
+        }
 
         private void EquipPlayer()
         {
