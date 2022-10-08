@@ -16,11 +16,13 @@ namespace PlayerScripts
         private int Level;
         private int Exp;
         private Animator anim;
+        private GameObject Menu;
 
         private void Start()
         {
             EquipPlayer();
             anim = GetComponent<Animator>();
+            GameObject.Find("Menu");
         }
 
         private void Update()
@@ -44,6 +46,19 @@ namespace PlayerScripts
             if (Input.GetKeyDown(GameManager.GM.capacity3))
             {
                 //anim.CrossFade(EquipmentLeft.Name,1);
+            }
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                if (GameManager.GM.menuing)
+                {
+                    Menu.SetActive(false);
+                    GameManager.GM.menuing = false;
+                }
+                else
+                {
+                    GameManager.GM.menuing = true;
+                    Menu.SetActive(true);
+                }
             }
         }
 

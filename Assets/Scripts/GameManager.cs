@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    private bool menuing;
+    public bool menuing;
     public string arena;
     public string Equipment;
     public string Capacity1Name;

@@ -61,7 +61,10 @@ namespace Menu
 			}
 			else
 			{
-				subMenu.gameObject.SetActive(false);
+				if (subMenu != null)
+				{
+					subMenu.gameObject.SetActive(false);
+				}
 				menuPanel.gameObject.SetActive(true);
 			}
 		}
