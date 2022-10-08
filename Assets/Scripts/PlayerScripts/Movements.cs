@@ -18,25 +18,28 @@ namespace PlayerScripts
     
         void Update () 
         {
-            if (Input.GetKey(GameManager.GM.forward))
+            if (!GameManager.GM.menuing)
             {
-                transform.Translate(Vector3.forward * _speed * Time.deltaTime);
-            }
-            if (Input.GetKey(GameManager.GM.backward))
-            {
-                transform.Translate(-Vector3.forward * _speed * Time.deltaTime);
-            }
-            if (Input.GetKey(GameManager.GM.left))
-            {
-                transform.Rotate(new Vector3(0,Vector3.left.x * _rotateSpeed * Time.deltaTime, 0));
-            }
-            if (Input.GetKey(GameManager.GM.right))
-            {
-                transform.Rotate(new Vector3(0,Vector3.right.x * _rotateSpeed * Time.deltaTime, 0));
-            }
-            if (Input.GetKeyDown(GameManager.GM.jump) && _rigidbody.worldCenterOfMass.y < 1.51f)
-            {
-                _rigidbody.AddForce(Vector3.up * _jumpHeight);
+                if (Input.GetKey(GameManager.GM.forward))
+                {
+                    transform.Translate(Vector3.forward * _speed * Time.deltaTime);
+                }
+                if (Input.GetKey(GameManager.GM.backward))
+                {
+                    transform.Translate(-Vector3.forward * _speed * Time.deltaTime);
+                }
+                if (Input.GetKey(GameManager.GM.left))
+                {
+                    transform.Rotate(new Vector3(0,Vector3.left.x * _rotateSpeed * Time.deltaTime, 0));
+                }
+                if (Input.GetKey(GameManager.GM.right))
+                {
+                    transform.Rotate(new Vector3(0,Vector3.right.x * _rotateSpeed * Time.deltaTime, 0));
+                }
+                if (Input.GetKeyDown(GameManager.GM.jump) && _rigidbody.worldCenterOfMass.y < 1.51f)
+                {
+                    _rigidbody.AddForce(Vector3.up * _jumpHeight);
+                }
             }
         }
     }

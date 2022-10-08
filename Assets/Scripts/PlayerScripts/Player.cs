@@ -16,48 +16,44 @@ namespace PlayerScripts
         private int Level;
         private int Exp;
         private Animator anim;
-        private GameObject Menu;
 
         private void Start()
         {
             EquipPlayer();
-            anim = GetComponent<Animator>();
-            GameObject.Find("Menu");
+            anim = Equipment.GetComponent<Animator>();
         }
 
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Mouse0)) //Right Click
+            if (!GameManager.GM.menuing)
             {
-                anim.CrossFade(Equipment.Name,1);
-            }
-            if (Input.GetKeyDown(KeyCode.Mouse1)) // Left Click
-            {
-                anim.CrossFade(Equipment.Name,1);
-            }
-            if (Input.GetKeyDown(GameManager.GM.capacity1))
-            {
-               //anim.CrossFade(EquipmentRight.Name,1);
-            }
-            if (Input.GetKeyDown(GameManager.GM.capacity2))
-            {
-                //anim.CrossFade(EquipmentLeft.Name,1);
-            }
-            if (Input.GetKeyDown(GameManager.GM.capacity3))
-            {
-                //anim.CrossFade(EquipmentLeft.Name,1);
-            }
-            if (Input.GetKeyDown(KeyCode.Escape))
-            {
-                if (GameManager.GM.menuing)
+                if (Input.GetKeyUp(KeyCode.Mouse0)) //Left Click
                 {
-                    Menu.SetActive(false);
-                    GameManager.GM.menuing = false;
+                    anim.SetBool("click0", false);
                 }
-                else
+                if (Input.GetKeyUp(KeyCode.Mouse1)) //Left Click
                 {
-                    GameManager.GM.menuing = true;
-                    Menu.SetActive(true);
+                    anim.SetBool("click1", false);
+                }
+                if (Input.GetKeyDown(KeyCode.Mouse0)) //Right Click
+                {
+                    anim.SetBool("click0", true);
+                }
+                if (Input.GetKeyDown(KeyCode.Mouse1)) // Left Click
+                {
+                    anim.SetBool("click1", true);
+                }
+                if (Input.GetKeyDown(GameManager.GM.capacity1))
+                {
+                    //anim.CrossFade(EquipmentRight.Name,1);
+                }
+                if (Input.GetKeyDown(GameManager.GM.capacity2))
+                {
+                    //anim.CrossFade(EquipmentLeft.Name,1);
+                }
+                if (Input.GetKeyDown(GameManager.GM.capacity3))
+                {
+                    //anim.CrossFade(EquipmentLeft.Name,1);
                 }
             }
         }

@@ -7,13 +7,14 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public bool menuing;
+    public  bool menuing;
     public string arena;
     public string Equipment;
     public string Capacity1Name;
     public string Capacity2Name;
     public string Capacity3Name;
     public static GameManager GM;
+    public GameObject Menu;
     public KeyCode jump {get; set;}
     public KeyCode forward {get; set;}
     public KeyCode backward {get; set;}
@@ -35,8 +36,6 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
 
-        Equipment = "Hand";
-
         jump = (KeyCode) System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("jumpKey", "Space"));
         forward = (KeyCode) System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("forwardKey", "Z"));
         backward = (KeyCode) System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("backwardKey", "S"));
@@ -52,6 +51,5 @@ public class GameManager : MonoBehaviour
         AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(arena);
         asyncOperation.allowSceneActivation = true;
         yield return null;
-
     }
 }
