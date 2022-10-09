@@ -10,6 +10,7 @@ namespace PlayerScripts
         private int _rotateSpeed;
         private int _jumpHeight;
         private Rigidbody _rigidbody;
+        [SerializeField] private Transform _cam;
         void Start()
         {
             _rigidbody = GetComponent<Rigidbody>();
@@ -33,19 +34,19 @@ namespace PlayerScripts
                 if (Input.GetKey(GameManager.GM.left))
                 {
                     transform.Translate(Vector3.left * _speed * Time.deltaTime);
-                    //transform.Rotate(new Vector3(0,Vector3.left.x * _rotateSpeed * Time.deltaTime, 0));
                 }
                 if (Input.GetKey(GameManager.GM.right))
                 {
                     transform.Translate(Vector3.right * _speed * Time.deltaTime);
-                    //transform.Rotate(new Vector3(0,Vector3.right.x * _rotateSpeed * Time.deltaTime, 0));
                 }
                 if (Input.GetKeyDown(GameManager.GM.jump) && _rigidbody.worldCenterOfMass.y < 1.51f)
                 {
                     _rigidbody.AddForce(Vector3.up * _jumpHeight);
                 }
                 float h =  _rotateSpeed * Time.deltaTime * Input.GetAxis("Mouse X");
+                //float v =  _rotateSpeed * Time.deltaTime * Input.GetAxis("Mouse Y");
                 transform.Rotate(0, h, 0);
+                //_cam.Rotate(-v,0,0);
             }
         }
     }

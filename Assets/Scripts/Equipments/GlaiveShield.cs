@@ -14,6 +14,7 @@ namespace PlayerScripts
         {
             new Dropdown.OptionData("Heavy hit"),
             new Dropdown.OptionData("Great counter"),
+            new Dropdown.OptionData("Drill"),
         };
 
         public override List<Dropdown.OptionData> Capacities2 { get; set; } = new List<Dropdown.OptionData>()

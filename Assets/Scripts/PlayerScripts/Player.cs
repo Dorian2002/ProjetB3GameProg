@@ -27,29 +27,37 @@ namespace PlayerScripts
         {
             if (!GameManager.GM.menuing)
             {
-                if (Input.GetKeyUp(KeyCode.Mouse0)) //Left Click
-                {
-                    anim.SetBool("click0", false);
-                }
-                if (Input.GetKeyUp(KeyCode.Mouse1)) //Left Click
-                {
-                    anim.SetBool("click1", false);
-                }
                 if (Input.GetKeyDown(KeyCode.Mouse0)) //Right Click
                 {
-                    anim.SetBool("click0", true);
+                    anim.SetBool(Equipment.Name + "_Attack1", true);
+                }
+                if (Input.GetKeyUp(KeyCode.Mouse0)) //Right Click
+                {
+                    anim.SetBool(Equipment.Name + "_Attack1", false);
                 }
                 if (Input.GetKeyDown(KeyCode.Mouse1)) // Left Click
                 {
-                    anim.SetBool("click1", true);
+                    anim.SetBool(Equipment.Name + "_Attack2", true);
+                }
+                if (Input.GetKeyUp(KeyCode.Mouse1)) //Left Click
+                {
+                    anim.SetBool(Equipment.Name + "_Attack2", false);
                 }
                 if (Input.GetKeyDown(GameManager.GM.capacity1))
                 {
-                    //anim.CrossFade(EquipmentRight.Name,1);
+                    anim.SetBool(Equipment.Name + "_" + GameManager.GM.Capacity1Name, true);
+                }
+                if (Input.GetKeyUp(GameManager.GM.capacity1))
+                {
+                    anim.SetBool(Equipment.Name + "_" + GameManager.GM.Capacity1Name, false);
                 }
                 if (Input.GetKeyDown(GameManager.GM.capacity2))
                 {
-                    //anim.CrossFade(EquipmentLeft.Name,1);
+                    anim.SetBool(Equipment.Name + "_" + GameManager.GM.Capacity2Name, true);
+                }
+                if (Input.GetKeyUp(GameManager.GM.capacity2))
+                {
+                    anim.SetBool(Equipment.Name + "_" + GameManager.GM.Capacity2Name, false);
                 }
                 if (Input.GetKeyDown(GameManager.GM.capacity3))
                 {
