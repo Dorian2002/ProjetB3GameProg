@@ -61,14 +61,14 @@ namespace PlayerScripts
                 }
                 if (Input.GetKeyDown(GameManager.GM.capacity3))
                 {
-                    //anim.CrossFade(EquipmentLeft.Name,1);
+                    anim.SetBool(Equipment.Name + "_" + GameManager.GM.Capacity3Name, false);
                 }
             }
         }
         public void ResetAnimation()
         {
-            anim.SetBool("click0", false);
-            anim.SetBool("click1", false);
+            anim.SetBool("Glaive&Shield_Attack1", false);
+            anim.SetBool("Glaive&Shield_Attack2", false);
         }
 
         private void EquipPlayer()

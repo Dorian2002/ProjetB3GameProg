@@ -9,7 +9,7 @@ namespace Menu
     {
         public void PlayGame()
         {
-            SceneManager.LoadSceneAsync("ArenaTest");
+            SceneManager.LoadSceneAsync("Arena1");
         } 
     }
 }
