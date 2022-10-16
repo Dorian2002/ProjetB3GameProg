@@ -8,12 +8,11 @@ public class InGameMenuing : MonoBehaviour
     private GameObject Menu;
     void Start()
     {
-        Physics.autoSimulation = true;
         GameManager.GM.menuing = false;
         Menu = Instantiate(Resources.Load("Menu/InGameMenu") as GameObject);
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
-        
+        Time.timeScale = 1;
     }
 
     void Update()
@@ -25,17 +24,17 @@ public class InGameMenuing : MonoBehaviour
                 
                 Cursor.visible = false;
                 Cursor.lockState = CursorLockMode.Locked;
-                Physics.autoSimulation = true;
                 Menu.SetActive(false);
                 GameManager.GM.menuing = false;
+                Time.timeScale = 1;
             }
             else
             {
+                Time.timeScale = 0;
                 GetComponent<Player>().ResetAnimation();
                 Cursor.visible = true;
                 Cursor.lockState = CursorLockMode.None;
                 GameManager.GM.menuing = true;
-                Physics.autoSimulation = false;
                 Menu.SetActive(true);
             }
         }

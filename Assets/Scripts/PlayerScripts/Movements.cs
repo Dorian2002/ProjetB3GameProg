@@ -6,7 +6,7 @@ namespace PlayerScripts
 {
     public class Movements : MonoBehaviour
     {
-        private int _speed;
+        [SerializeField] private int _speed;
         private int _rotateSpeed;
         private int _jumpHeight;
         private Rigidbody _rigidbody;
@@ -48,6 +48,11 @@ namespace PlayerScripts
                 transform.Rotate(0, h, 0);
                 //_cam.Rotate(-v,0,0);
             }
+        }
+
+        public void SetSpeed(int value)
+        {
+            _speed = value;
         }
     }
 }
