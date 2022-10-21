@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using BehaviorTree;
 using UnityEngine;
 
+
 public class CheckForPlayerRange : Node
 {
     private readonly Transform _transform;
@@ -20,7 +21,7 @@ public class CheckForPlayerRange : Node
         }
 
         Transform targetTransform = (Transform)target;
-        if (Vector3.Distance(targetTransform.position,_transform.position) <= GladiatorBT.GetAttackRange())
+        if (Vector3.Distance(targetTransform.position, _transform.position) <= GladiatorBT.GetAttackRange())
         {
             state = NodeState.SUCCESS;
             return state;

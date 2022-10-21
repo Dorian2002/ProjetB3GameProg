@@ -17,6 +17,7 @@ public class GoToPlayer : Node
     public override NodeState Evaluate()
     {
         var target = (Transform)GetData("target");
+        
         if (Vector3.Distance(target.position,_transform.position) <= GladiatorBT.GetAttackRange())
         {
             _agent.destination = _agent.transform.position;

@@ -8,7 +8,7 @@ namespace PlayerScripts
     public class GlaiveShield : Equipment
     {
         public override string Name { get; set; } = "Glaive&Shield";
-        public override string Description { get; set; } = "Roman well balanced short  with a shield.";
+        public override string Description { get; set; } = "Roman short sword with a shield.";
 
         public override List<Dropdown.OptionData> Capacities1 { get; set; } = new List<Dropdown.OptionData>()
         {
@@ -28,5 +28,13 @@ namespace PlayerScripts
             new Dropdown.OptionData("Last hope"),
             new Dropdown.OptionData("Stampede"),
         };
+        
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.gameObject.CompareTag("Ennemy"))
+            {
+                
+            }
+        }
     }
 }

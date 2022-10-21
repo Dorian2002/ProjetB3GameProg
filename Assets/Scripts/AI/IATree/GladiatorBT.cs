@@ -13,7 +13,7 @@ public class GladiatorBT : Tree
     [SerializeField] private Animator animator;
     [SerializeField] private Transform hands;
     [SerializeField] private static float speed = 3f;
-    [SerializeField] private static float attackRange = 4f;
+    [SerializeField] private static float attackRange = 3f;
     [SerializeField] private static float walkRadius = 20f;
 
     protected override Node SetUpTree()
@@ -41,6 +41,7 @@ public class GladiatorBT : Tree
     {
         EquipEnemy();
         animator = equipment.GetComponent<Animator>();
+        Hp = 100;
     }
 
     public static float GetAttackRange()
