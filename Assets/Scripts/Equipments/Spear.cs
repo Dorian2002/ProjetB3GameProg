@@ -9,6 +9,8 @@ namespace PlayerScripts
     {
         public override string Name { get; set; } = "Spear";
         public override string Description { get; set; } = "Roman long and pointed spear.";
+        public override string Owner { get; set; }
+        public override Animator anim { get; set; }
         public override List<Dropdown.OptionData> Capacities1 { get; set; } = new List<Dropdown.OptionData>()
         {
             new Dropdown.OptionData("Wrath"),

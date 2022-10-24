@@ -10,6 +10,9 @@ namespace PlayerScripts
     {
         public override string Name { get; set; } = "Glaive";
         public override string Description { get; set; } = "Roman well balanced short sword.";
+        public override string Owner { get; set; }
+        public override Animator anim { get; set; }
+
         public override List<Dropdown.OptionData> Capacities1 { get; set; } = new List<Dropdown.OptionData>()
         {
             new Dropdown.OptionData("Heavy hit"),
@@ -22,19 +25,6 @@ namespace PlayerScripts
         {
             new Dropdown.OptionData("Last hope"),
         };
-        
-        
-        
-        //private void Awake()
-        //{
-        //    Name = "Glaive";
-        //    Description = "Roman well balanced short sword.";
-        //    Capacities = new List<Dropdown.OptionData>()
-        //    {
-        //        new Dropdown.OptionData("Heavy hit"),
-        //        new Dropdown.OptionData("Tornado"),
-        //        new Dropdown.OptionData("Last hope")
-        //    };
-        //}
+
     }
 }

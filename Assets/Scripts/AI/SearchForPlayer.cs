@@ -2,15 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using BehaviorTree;
+using UnityEngine.AI;
 
 public class SearchForPlayer : Node
 {
     private static int PlayerLayerMask = 1 << 7;
     private readonly Transform _transform;
+    private readonly NavMeshAgent _agent;
 
-    public SearchForPlayer(Transform transform)
+    public SearchForPlayer(Transform transform, NavMeshAgent agent)
     {
         _transform = transform;
+        _agent = agent;
     }
 
     public override NodeState Evaluate()

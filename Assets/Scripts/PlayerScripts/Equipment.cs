@@ -14,6 +14,21 @@ namespace PlayerScripts
         public abstract List<Dropdown.OptionData> Capacities1 { get; set; }
         public abstract List<Dropdown.OptionData> Capacities2 { get; set; }
         public abstract List<Dropdown.OptionData> Capacities3 { get; set; }
+        public abstract string Owner { get; set; }
+        public abstract Animator anim { get; set; }
+        
+        private void OnTriggerEnter(Collider other)
+        {
+            tag = other.tag;
+            if (Owner.Equals("Ennemy") && tag.Equals("Player"))
+            {
+                Debug.Log("hit player");
+            }
+            if (Owner.Equals("Player") && tag.Equals("Ennemy"))
+            {
+                Debug.Log("hit ennemy");
+            }
+        }
     }
 }
 

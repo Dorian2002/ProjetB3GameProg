@@ -31,7 +31,6 @@ public class InGameMenuing : MonoBehaviour
             else
             {
                 Time.timeScale = 0;
-                GetComponent<Player>().ResetAnimation();
                 Cursor.visible = true;
                 Cursor.lockState = CursorLockMode.None;
                 GameManager.GM.menuing = true;

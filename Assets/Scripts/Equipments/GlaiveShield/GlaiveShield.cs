@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,6 +10,13 @@ namespace PlayerScripts
     {
         public override string Name { get; set; } = "Glaive&Shield";
         public override string Description { get; set; } = "Roman short sword with a shield.";
+        [SerializeField] public override string Owner { get; set; }
+        public override Animator anim { get; set; }
+
+        private void Start()
+        {
+            anim = gameObject.GetComponent<Animator>();
+        }
 
         public override List<Dropdown.OptionData> Capacities1 { get; set; } = new List<Dropdown.OptionData>()
         {
@@ -28,13 +36,5 @@ namespace PlayerScripts
             new Dropdown.OptionData("Last hope"),
             new Dropdown.OptionData("Stampede"),
         };
-        
-        private void OnTriggerEnter(Collider other)
-        {
-            if (other.gameObject.CompareTag("Ennemy"))
-            {
-                
-            }
-        }
     }
 }

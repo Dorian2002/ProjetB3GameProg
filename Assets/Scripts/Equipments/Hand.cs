@@ -11,6 +11,9 @@ namespace PlayerScripts
     {
         public override string Name { get; set; } = "Hand";
         public override string Description { get; set; } = "Just your hand";
+        public override string Owner { get; set; }
+        public override Animator anim { get; set; }
+
         public override List<Dropdown.OptionData> Capacities1 { get; set; } = new List<Dropdown.OptionData>()
         {
 

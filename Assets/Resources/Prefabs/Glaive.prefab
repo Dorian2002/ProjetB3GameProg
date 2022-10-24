@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4774420295943317108}
   - component: {fileID: 7796252105256036843}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Glaive
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -56,7 +56,7 @@ GameObject:
   - component: {fileID: 4774420296582417903}
   - component: {fileID: 4774420296582417889}
   - component: {fileID: 4774420296582417888}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: glaive
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -137,7 +137,7 @@ GameObject:
   - component: {fileID: 4768452794142483382}
   - component: {fileID: 297477467112770168}
   - component: {fileID: 463215529638295097}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: LeftHand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -218,7 +218,7 @@ GameObject:
   - component: {fileID: 7831236714494440466}
   - component: {fileID: 3493703220914204160}
   - component: {fileID: 3795253760485036300}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: RightHand
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -17,11 +17,18 @@ public class GoToPlayer : Node
     public override NodeState Evaluate()
     {
         var target = (Transform)GetData("target");
-        
+
         if (Vector3.Distance(target.position,_transform.position) <= GladiatorBT.GetAttackRange())
         {
             _agent.destination = _agent.transform.position;
             state = NodeState.SUCCESS;
+            return state;
+        }
+        else if (Vector3.Distance(target.position,_transform.position) >= GladiatorBT.GetWalkRadius())
+        {
+            parent.parent.ClearData("target");
+            _agent.destination = _agent.transform.position;
+            state = NodeState.FAILURE;
             return state;
         }
         else
