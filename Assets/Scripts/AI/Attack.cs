@@ -16,7 +16,13 @@ public class Attack : Node
     public override NodeState Evaluate()
     {
         var target = (Transform)GetData("target");
-        _self.LookAt(target.position, Vector3.one);
+        
+        Vector3 dir = target.position - _self.position;
+        dir.y = 0; // keep the direction strictly horizontal
+        Quaternion rot = Quaternion.LookRotation(dir);
+        // slerp to the desired rotation over time
+        _self.rotation = Quaternion.Slerp(_self.rotation, rot, 10 * Time.deltaTime);
+        
         _animator.SetBool("Glaive&Shield_Attack1", true);
         state = NodeState.SUCCESS;
         return state;
