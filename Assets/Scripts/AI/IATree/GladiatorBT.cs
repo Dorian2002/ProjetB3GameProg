@@ -5,6 +5,7 @@ using PlayerScripts;
 using UnityEngine;
 using Tree =BehaviorTree.Tree;
 using UnityEngine.AI;
+using UnityEngine.PlayerLoop;
 
 public class GladiatorBT : Tree
 {
@@ -13,35 +14,45 @@ public class GladiatorBT : Tree
     [SerializeField] private Animator animator;
     [SerializeField] private Transform hands;
     [SerializeField] private static float speed=3f;
-    [SerializeField] private static float attackRange=3f;
-    [SerializeField] private static float walkRadius=20f;
+    [SerializeField] private static float attackRange=1.8f;
+    [SerializeField] private static float walkRadius=12f;
+    private EntityStats _stats;
 
     protected override Node SetUpTree()
     {
+        
         SetUpAI();
-        agent.speed=speed;
         Node root=new Selector(new List<Node>
         {
             new Sequence(new List<Node>
             {
-                new CheckForPlayerRange(transform),
-                new Attack(animator,transform),
+                new SearchForPlayer(transform,agent),
+                new GoToPlayer(transform,agent),
             }),
             new Sequence(new List<Node>
             {
-                new SearchForPlayer(transform,agent),
-                new GoToPlayer(transform,agent),
+                new CheckForPlayerRange(transform),
+                new Attack(animator,transform),
             }),
             new TaskPatrol(transform, agent),
         });
         return root;
     }
 
+    void Update()
+    {
+        if (_stats.GetHp() <= 0)
+        {
+            Destroy(this);
+        }
+    }
+
     void SetUpAI()
     {
+        _stats = GetComponent<EntityStats>();
+        agent.speed=speed;
         EquipEnemy();
         animator=equipment.GetComponent<Animator>();
-        Hp=100;
     }
 
     public static float GetAttackRange()
@@ -60,7 +71,12 @@ public class GladiatorBT : Tree
         {
             Instantiate(Resources.Load("Prefabs/Glaive&Shield"), hands);
             equipment=hands.gameObject.GetComponentInChildren<Equipment>();
-            equipment.Owner=tag;
+            equipment.OwnerStats = GetComponent<EntityStats>();
         }catch{}
+    }
+
+    public void Damage(int damage)
+    {
+        _stats.Damage(damage);
     }
 }

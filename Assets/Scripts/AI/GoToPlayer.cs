@@ -17,11 +17,10 @@ public class GoToPlayer : Node
     public override NodeState Evaluate()
     {
         var target = (Transform)GetData("target");
-
-        if (Vector3.Distance(target.position,_transform.position) <= GladiatorBT.GetAttackRange())
+        if (Vector3.Distance(target.position,_transform.position) < GladiatorBT.GetAttackRange())
         {
             _agent.destination = _agent.transform.position;
-            state = NodeState.SUCCESS;
+            state = NodeState.FAILURE;
             return state;
         }
         else if (Vector3.Distance(target.position,_transform.position) >= GladiatorBT.GetWalkRadius())
@@ -31,11 +30,7 @@ public class GoToPlayer : Node
             state = NodeState.FAILURE;
             return state;
         }
-        else
-        {
-            _agent.destination = target.position;
-        }
-
+        _agent.destination = target.position;
         state = NodeState.RUNNING;
         return state;
     }

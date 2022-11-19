@@ -10,7 +10,7 @@ namespace PlayerScripts
     {
         public override string Name { get; set; } = "Glaive&Shield";
         public override string Description { get; set; } = "Roman short sword with a shield.";
-        [SerializeField] public override string Owner { get; set; }
+        public override EntityStats OwnerStats { get; set; }
         public override Animator anim { get; set; }
 
         private void Start()

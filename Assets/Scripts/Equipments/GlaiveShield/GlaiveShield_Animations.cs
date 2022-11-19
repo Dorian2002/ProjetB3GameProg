@@ -33,9 +33,8 @@ public class GlaiveShield_Animations : MonoBehaviour
         float time = 0;
         playerMovements.SetSpeed(10);
         while (anim.GetCurrentAnimatorClipInfo(0)[0].clip.name == "Glaive&Shield_Stampede")
-        { 
-           Debug.Log(anim.GetCurrentAnimatorClipInfo(0)[0].clip.name);
-           time += Time.deltaTime;
+        {
+            time += Time.deltaTime;
            if (time >= 10)
            {
                playerMovements.SetSpeed(5);

@@ -9,7 +9,6 @@ namespace BehaviorTree
     {
         
         private Node _root = null;
-        protected int Hp;
 
         protected void Start()
         {
@@ -18,10 +17,6 @@ namespace BehaviorTree
 
         private void Update()
         {
-            if (Hp <= 0)
-            {
-                Destroy(gameObject);
-            }
             if (_root != null)
                 _root.Evaluate();
         }

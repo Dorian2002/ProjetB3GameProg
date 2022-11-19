@@ -7,22 +7,25 @@ namespace PlayerScripts
 {
     public class Player : MonoBehaviour
     {
-        public int Hp { get; set; }
-        public int AttackSpeed { get; set; }
         public Equipment equipment;
         [SerializeField] private Transform hands;
         public Capacity[] Capacities { get; set; }
-        private int Level;
-        private int Exp;
+        private EntityStats stats;
 
-        private void Start()
+        void Start()
         {
+            stats = GetComponent<EntityStats>();
             EquipPlayer();
             equipment.anim = equipment.GetComponent<Animator>();
         }
 
-        private void Update()
+        void Update()
         {
+            if (stats.GetHp() <= 0)
+            {
+                Destroy(this);
+                GameManager.GM.GameOver();
+            }
             if (!GameManager.GM.menuing)
             {
                 if (Input.GetKeyDown(KeyCode.Mouse0)) //Right Click
@@ -74,8 +77,13 @@ namespace PlayerScripts
             {
                 Instantiate(Resources.Load("Prefabs/"+ GameManager.GM.Equipment), hands);
                 equipment = hands.gameObject.GetComponentInChildren<Equipment>();
-                equipment.Owner = tag;
+                equipment.OwnerStats = GetComponent<EntityStats>();
             }catch{}
+        }
+
+        public void Damage(int damage)
+        {
+            stats.Damage(damage);
         }
     }
 }

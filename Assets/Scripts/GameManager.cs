@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public  bool menuing;
+    public bool menuing;
     public string arena;
     public string Equipment;
     public string Capacity1Name;
@@ -51,5 +51,10 @@ public class GameManager : MonoBehaviour
         AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(arena);
         asyncOperation.allowSceneActivation = true;
         yield return null;
+    }
+
+    public void GameOver()
+    {
+        
     }
 }

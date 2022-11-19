@@ -13,15 +13,14 @@ public class CheckForPlayerRange : Node
     }
     public override NodeState Evaluate()
     {
-        object target = GetData("target");
-        if (target == null)
+        Transform target = (Transform)GetData("target");
+        if (!target)
         {
             state = NodeState.FAILURE;
             return state;
         }
-
-        Transform targetTransform = (Transform)target;
-        if (Vector3.Distance(targetTransform.position, _transform.position) <= GladiatorBT.GetAttackRange())
+        
+        if (Vector3.Distance(target.position, _transform.position) <= GladiatorBT.GetAttackRange())
         {
             state = NodeState.SUCCESS;
             return state;

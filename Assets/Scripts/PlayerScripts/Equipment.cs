@@ -14,19 +14,25 @@ namespace PlayerScripts
         public abstract List<Dropdown.OptionData> Capacities1 { get; set; }
         public abstract List<Dropdown.OptionData> Capacities2 { get; set; }
         public abstract List<Dropdown.OptionData> Capacities3 { get; set; }
-        public abstract string Owner { get; set; }
+        public abstract EntityStats OwnerStats { get; set; }
         public abstract Animator anim { get; set; }
-        
+
         private void OnTriggerEnter(Collider other)
         {
+            if (other == null)
+                return;
             tag = other.tag;
-            if (Owner.Equals("Ennemy") && tag.Equals("Player"))
+            if (OwnerStats.GetOwner().Equals("Ennemy") && tag.Equals("Player"))
             {
-                Debug.Log("hit player");
+                EntityStats stats = other.GetComponent<EntityStats>();
+                stats.Damage(OwnerStats.GetDamage());
             }
-            if (Owner.Equals("Player") && tag.Equals("Ennemy"))
+            if (OwnerStats.GetOwner().Equals("Player") && tag.Equals("Ennemy"))
             {
-                Debug.Log("hit ennemy");
+                Debug.Log("lo");
+                Debug.Log(other.gameObject);
+                EntityStats stats = other.gameObject.GetComponent<EntityStats>();
+                stats.Damage(OwnerStats.GetDamage());
             }
         }
     }
