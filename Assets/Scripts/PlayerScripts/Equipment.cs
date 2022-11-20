@@ -24,14 +24,12 @@ namespace PlayerScripts
             tag = other.tag;
             if (OwnerStats.GetOwner().Equals("Ennemy") && tag.Equals("Player"))
             {
-                EntityStats stats = other.GetComponent<EntityStats>();
+                EntityStats stats = other.gameObject.GetComponentInParent<EntityStats>();
                 stats.Damage(OwnerStats.GetDamage());
             }
             if (OwnerStats.GetOwner().Equals("Player") && tag.Equals("Ennemy"))
             {
-                Debug.Log("lo");
-                Debug.Log(other.gameObject);
-                EntityStats stats = other.gameObject.GetComponent<EntityStats>();
+                EntityStats stats = other.gameObject.GetComponentInParent<EntityStats>();
                 stats.Damage(OwnerStats.GetDamage());
             }
         }

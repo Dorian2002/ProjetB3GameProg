@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using BehaviorTree;
@@ -20,35 +21,26 @@ public class GladiatorBT : Tree
 
     protected override Node SetUpTree()
     {
-        
         SetUpAI();
         Node root=new Selector(new List<Node>
         {
             new Sequence(new List<Node>
             {
-                new SearchForPlayer(transform,agent),
-                new GoToPlayer(transform,agent),
+                new CheckForPlayerRange(transform),
+                new Attack(animator,transform),
             }),
             new Sequence(new List<Node>
             {
-                new CheckForPlayerRange(transform),
-                new Attack(animator,transform),
+                new SearchForPlayer(transform,agent),
+                new GoToPlayer(transform,agent),
             }),
             new TaskPatrol(transform, agent),
         });
         return root;
     }
 
-    void Update()
-    {
-        if (_stats.GetHp() <= 0)
-        {
-            Destroy(this);
-        }
-    }
-
     void SetUpAI()
-    {
+    { 
         _stats = GetComponent<EntityStats>();
         agent.speed=speed;
         EquipEnemy();
@@ -71,12 +63,12 @@ public class GladiatorBT : Tree
         {
             Instantiate(Resources.Load("Prefabs/Glaive&Shield"), hands);
             equipment=hands.gameObject.GetComponentInChildren<Equipment>();
-            equipment.OwnerStats = GetComponent<EntityStats>();
+            equipment.OwnerStats = _stats;
         }catch{}
     }
 
-    public void Damage(int damage)
+    private void OnDestroy()
     {
-        _stats.Damage(damage);
+        
     }
 }

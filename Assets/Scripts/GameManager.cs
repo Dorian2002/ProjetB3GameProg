@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public bool menuing;
+    private bool gameover = false;
     public string arena;
     public string Equipment;
     public string Capacity1Name;
@@ -56,5 +57,10 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         
+    }
+
+    public bool IsGameOver()
+    {
+        return gameover;
     }
 }

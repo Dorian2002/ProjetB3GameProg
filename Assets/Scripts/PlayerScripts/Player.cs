@@ -19,13 +19,13 @@ namespace PlayerScripts
             equipment.anim = equipment.GetComponent<Animator>();
         }
 
+        private void OnDestroy()
+        {
+            GameManager.GM.GameOver();
+        }
+
         void Update()
         {
-            if (stats.GetHp() <= 0)
-            {
-                Destroy(this);
-                GameManager.GM.GameOver();
-            }
             if (!GameManager.GM.menuing)
             {
                 if (Input.GetKeyDown(KeyCode.Mouse0)) //Right Click
@@ -81,9 +81,9 @@ namespace PlayerScripts
             }catch{}
         }
 
-        public void Damage(int damage)
+        public EntityStats GetStats()
         {
-            stats.Damage(damage);
+            return stats;
         }
     }
 }

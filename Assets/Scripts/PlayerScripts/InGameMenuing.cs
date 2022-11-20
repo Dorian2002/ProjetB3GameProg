@@ -17,7 +17,15 @@ public class InGameMenuing : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (GameManager.GM.IsGameOver())
+        {
+            Time.timeScale = 0;
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+            GameManager.GM.menuing = true;
+            Menu.SetActive(true);
+        }
+        if (Input.GetKeyDown(KeyCode.Escape) && !GameManager.GM.IsGameOver())
         {
             if (GameManager.GM.menuing)
             {
