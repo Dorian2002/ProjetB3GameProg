@@ -3,7 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using PlayerScripts;
 using UnityEngine;
+using UnityEngine.Assertions;
 using UnityEngine.SceneManagement;
+using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviour
 {
@@ -15,7 +17,10 @@ public class GameManager : MonoBehaviour
     public string Capacity2Name;
     public string Capacity3Name;
     public static GameManager GM;
+    private List<Transform> spawnPoints;
     public GameObject Menu;
+    private Wave currentWave;
+    private int waveNbr;
     public KeyCode jump {get; set;}
     public KeyCode forward {get; set;}
     public KeyCode backward {get; set;}
@@ -23,10 +28,14 @@ public class GameManager : MonoBehaviour
     public KeyCode right {get; set;}
     public KeyCode capacity1 {get; set;}
     public KeyCode capacity2 {get; set;}
-    public KeyCode capacity3 {get; set;} 
+    public KeyCode capacity3 {get; set;}
+
+    public GameObject ennemyPrefab;
 
     void Awake()
     {
+        Assert.IsNotNull(ennemyPrefab);
+        waveNbr = 0;
         if(GM == null)
         {
             DontDestroyOnLoad(gameObject);
@@ -62,5 +71,27 @@ public class GameManager : MonoBehaviour
     public bool IsGameOver()
     {
         return gameover;
+    }
+
+    public void GetSpawnPointsAndWave()
+    {
+        spawnPoints = new List<Transform>();
+        spawnPoints.Add(GameObject.Find("spawnPoint1").transform);
+        spawnPoints.Add(GameObject.Find("spawnPoint2").transform);
+        spawnPoints.Add(GameObject.Find("spawnPoint3").transform);
+        spawnPoints.Add(GameObject.Find("spawnPoint4").transform);
+        newWave();
+    }
+
+    private void newWave()
+    {
+        currentWave = new Wave(waveNbr);
+        for (int i = 0; i < currentWave.GetNbr(); i++)
+        {
+            var go = Instantiate(ennemyPrefab);
+            go.GetComponent<GladiatorBT>().SetStat(currentWave.GetStats());
+            go.transform.position = spawnPoints[Random.Range(0, spawnPoints.Count)].position;
+        }
+        waveNbr++;
     }
 }

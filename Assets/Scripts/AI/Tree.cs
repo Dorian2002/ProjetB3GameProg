@@ -9,7 +9,7 @@ namespace BehaviorTree
     {
         private Node _root = null;
 
-        protected void Start()
+        private void Start()
         {
             _root = SetUpTree();
         }
@@ -19,7 +19,7 @@ namespace BehaviorTree
             if (_root != null)
                 _root.Evaluate();
         }
-
+        
         protected abstract Node SetUpTree();
     }
 }

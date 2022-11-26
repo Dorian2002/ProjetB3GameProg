@@ -21,7 +21,6 @@ public class GladiatorBT : Tree
 
     protected override Node SetUpTree()
     {
-        SetUpAI();
         Node root=new Selector(new List<Node>
         {
             new Sequence(new List<Node>
@@ -39,14 +38,6 @@ public class GladiatorBT : Tree
         return root;
     }
 
-    void SetUpAI()
-    { 
-        _stats = GetComponent<EntityStats>();
-        agent.speed=speed;
-        EquipEnemy();
-        animator=equipment.GetComponent<Animator>();
-    }
-
     public static float GetAttackRange()
     {
         return attackRange;
@@ -57,7 +48,7 @@ public class GladiatorBT : Tree
         return walkRadius;
     }
     
-    private void EquipEnemy()
+    private void EquipEnnemy()
     {
         try
         {
@@ -65,6 +56,18 @@ public class GladiatorBT : Tree
             equipment=hands.gameObject.GetComponentInChildren<Equipment>();
             equipment.OwnerStats = _stats;
         }catch{}
+        animator=equipment.GetComponent<Animator>();
+        agent.speed=speed;
+    }
+
+    public void SetStat(EntityStats stats)
+    {
+        _stats = stats;
+        EquipEnnemy();
+    }
+    public EntityStats GetStats()
+    {
+        return _stats;
     }
 
     private void OnDestroy()

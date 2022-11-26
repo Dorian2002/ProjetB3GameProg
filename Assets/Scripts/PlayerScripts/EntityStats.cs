@@ -3,17 +3,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EntityStats : MonoBehaviour
+public class EntityStats
 {
-    [SerializeField] private string owner;
+    private string _owner;
     private int _level;
     private int _exp;
     private int _hp;
     private int _attackSpeed;
     private int _damages;
 
-    public EntityStats()
+    public EntityStats(string owner)
     {
+        _owner = owner;
         _level = 1;
         _exp = 0;
         _hp = 100;
@@ -21,8 +22,9 @@ public class EntityStats : MonoBehaviour
         _damages = 10;
     }
     
-    public EntityStats(int hp,int attackspeed, int damages)
+    public EntityStats(string owner, int hp, int attackspeed, int damages)
     {
+        _owner = owner;
         _level = 1;
         _exp = 0;
         _hp = hp;
@@ -32,7 +34,7 @@ public class EntityStats : MonoBehaviour
 
     public string GetOwner()
     {
-        return owner;
+        return _owner;
     }
 
     public int GetDamage()
@@ -48,9 +50,5 @@ public class EntityStats : MonoBehaviour
     public void Damage(int damage)
     {
         _hp -= damage;
-        if (_hp <= 0)
-        {
-            Destroy(gameObject);
-        }
     }
 }

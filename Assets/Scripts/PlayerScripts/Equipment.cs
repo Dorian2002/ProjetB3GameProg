@@ -19,18 +19,27 @@ namespace PlayerScripts
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other == null)
-                return;
             tag = other.tag;
+            if (other == null || (tag != "Ennemy" && tag != "Player"))
+                return;
             if (OwnerStats.GetOwner().Equals("Ennemy") && tag.Equals("Player"))
             {
-                EntityStats stats = other.gameObject.GetComponentInParent<EntityStats>();
+                EntityStats stats = other.gameObject.GetComponentInParent<Player>().GetStats();
                 stats.Damage(OwnerStats.GetDamage());
+                if (stats.GetHp() <= 0)
+                {
+                    Destroy(other.gameObject);
+                }
             }
             if (OwnerStats.GetOwner().Equals("Player") && tag.Equals("Ennemy"))
             {
-                EntityStats stats = other.gameObject.GetComponentInParent<EntityStats>();
+                Debug.Log(other.gameObject.GetComponentInParent<GladiatorBT>());
+                EntityStats stats = other.gameObject.GetComponentInParent<GladiatorBT>().GetStats();
                 stats.Damage(OwnerStats.GetDamage());
+                if (stats.GetHp() <= 0)
+                {
+                    Destroy(other.GetComponentInParent<GladiatorBT>().gameObject);
+                }
             }
         }
     }

@@ -2969,6 +2969,7 @@ MonoBehaviour:
   Capacity2Name: 
   Capacity3Name: 
   Menu: {fileID: 0}
+  ennemyPrefab: {fileID: 6996552114414890514, guid: ca2abe0143120d645ad68e8d9a907528, type: 3}
 --- !u!4 &890921128
 Transform:
   m_ObjectHideFlags: 0

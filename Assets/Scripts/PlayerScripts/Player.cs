@@ -14,7 +14,7 @@ namespace PlayerScripts
 
         void Start()
         {
-            stats = GetComponent<EntityStats>();
+            stats = new EntityStats("Player");
             EquipPlayer();
             equipment.anim = equipment.GetComponent<Animator>();
         }
@@ -77,7 +77,7 @@ namespace PlayerScripts
             {
                 Instantiate(Resources.Load("Prefabs/"+ GameManager.GM.Equipment), hands);
                 equipment = hands.gameObject.GetComponentInChildren<Equipment>();
-                equipment.OwnerStats = GetComponent<EntityStats>();
+                equipment.OwnerStats = stats;
             }catch{}
         }
 
