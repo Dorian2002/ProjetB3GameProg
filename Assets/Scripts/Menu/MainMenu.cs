@@ -7,6 +7,7 @@ public class MainMenu : MonoBehaviour
 {
     public void GoToMainMenu()
     {
+        GameManager.GM.ResetWave();
         SceneManager.LoadSceneAsync("Menu");
     }
 }

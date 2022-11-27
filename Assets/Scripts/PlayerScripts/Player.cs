@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace PlayerScripts
 {
@@ -11,9 +12,12 @@ namespace PlayerScripts
         [SerializeField] private Transform hands;
         public Capacity[] Capacities { get; set; }
         private EntityStats stats;
+        [SerializeField] private Image healthbar;
+        [SerializeField] private GameObject LvlUpMenu;
 
         void Start()
         {
+            GameManager.GM.player = this;
             stats = new EntityStats("Player");
             EquipPlayer();
             equipment.anim = equipment.GetComponent<Animator>();
@@ -69,6 +73,9 @@ namespace PlayerScripts
                     equipment.anim.SetBool(equipment.Name + "_" + GameManager.GM.Capacity3Name, false);
                 }
             }
+
+            float filler = (float)stats.GetHp() / stats.GetHpMax();
+            healthbar.fillAmount = filler;
         }
 
         private void EquipPlayer()
@@ -84,6 +91,36 @@ namespace PlayerScripts
         public EntityStats GetStats()
         {
             return stats;
+        }
+
+        public void LevelUp()
+        {
+            Time.timeScale = 0;
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+            GameManager.GM.menuing = true;
+            
+            LvlUpMenu.SetActive(true);
+        }
+        public void UpgradeDamages()
+        {
+            stats.UpgradeDamages();
+            LvlUpMenu.SetActive(false);
+            
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+            GameManager.GM.menuing = false;
+            Time.timeScale = 1;
+        }
+        public void UpgradeMaxHp()
+        {
+            stats.UpgradeMaxHp();
+            LvlUpMenu.SetActive(false);
+            
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+            GameManager.GM.menuing = false;
+            Time.timeScale = 1;
         }
     }
 }

@@ -7,6 +7,7 @@ using UnityEngine;
 using Tree =BehaviorTree.Tree;
 using UnityEngine.AI;
 using UnityEngine.PlayerLoop;
+using UnityEngine.UI;
 
 public class GladiatorBT : Tree
 {
@@ -17,7 +18,9 @@ public class GladiatorBT : Tree
     [SerializeField] private static float speed=3f;
     [SerializeField] private static float attackRange=1.8f;
     [SerializeField] private static float walkRadius=12f;
-    private EntityStats _stats;
+    public override EntityStats _stats { get; set; }
+    public override Image healthBar { get; set; }
+    public override Transform player { get; set; }
 
     protected override Node SetUpTree()
     {
@@ -38,6 +41,12 @@ public class GladiatorBT : Tree
         return root;
     }
 
+    void Start()
+    {
+        base.Start();
+        player = GameManager.GM.player.transform;
+    }
+    
     public static float GetAttackRange()
     {
         return attackRange;
@@ -72,6 +81,8 @@ public class GladiatorBT : Tree
 
     private void OnDestroy()
     {
-        
+        var xp = Instantiate(Resources.Load("Prefabs/xp")as GameObject);
+        xp.transform.position = new Vector3(transform.position.x, xp.transform.position.y, transform.position.z);
+        GameManager.GM.UpdateWave(this);
     }
 }

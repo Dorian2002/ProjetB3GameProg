@@ -33,7 +33,6 @@ namespace PlayerScripts
             }
             if (OwnerStats.GetOwner().Equals("Player") && tag.Equals("Ennemy"))
             {
-                Debug.Log(other.gameObject.GetComponentInParent<GladiatorBT>());
                 EntityStats stats = other.gameObject.GetComponentInParent<GladiatorBT>().GetStats();
                 stats.Damage(OwnerStats.GetDamage());
                 if (stats.GetHp() <= 0)

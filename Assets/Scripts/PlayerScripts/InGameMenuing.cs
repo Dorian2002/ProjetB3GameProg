@@ -6,7 +6,8 @@ using UnityEngine;
 public class InGameMenuing : MonoBehaviour
 {
     private GameObject Menu;
-    void Start()
+
+    void Awake()
     {
         GameManager.GM.menuing = false;
         Menu = Instantiate(Resources.Load("Menu/InGameMenu") as GameObject);
@@ -25,11 +26,12 @@ public class InGameMenuing : MonoBehaviour
             GameManager.GM.menuing = true;
             Menu.SetActive(true);
         }
+
         if (Input.GetKeyDown(KeyCode.Escape) && !GameManager.GM.IsGameOver())
         {
             if (GameManager.GM.menuing)
             {
-                
+
                 Cursor.visible = false;
                 Cursor.lockState = CursorLockMode.Locked;
                 Menu.SetActive(false);

@@ -10,6 +10,7 @@ namespace Menu
         public void PlayGame()
         {
             SceneManager.LoadSceneAsync("Arena1");
+            GameManager.GM.ResetWave();
         } 
     }
 }

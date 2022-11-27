@@ -23,6 +23,16 @@ public class Wave
 
     public EntityStats GetStats()
     {
-        return _stat;
+        return _stat.Clone() as EntityStats;
+    }
+
+    public bool UpdateWave()
+    {
+        _nbr -= 1;
+        if (_nbr == 0)
+        {
+            return true;
+        }
+        return false;
     }
 }

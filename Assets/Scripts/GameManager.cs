@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
     public GameObject Menu;
     private Wave currentWave;
     private int waveNbr;
+    private List<GladiatorBT> ennemies;
     public KeyCode jump {get; set;}
     public KeyCode forward {get; set;}
     public KeyCode backward {get; set;}
@@ -31,10 +32,12 @@ public class GameManager : MonoBehaviour
     public KeyCode capacity3 {get; set;}
 
     public GameObject ennemyPrefab;
+    public Player player;
 
     void Awake()
     {
         Assert.IsNotNull(ennemyPrefab);
+        ennemies = new List<GladiatorBT>();
         waveNbr = 0;
         if(GM == null)
         {
@@ -83,15 +86,50 @@ public class GameManager : MonoBehaviour
         newWave();
     }
 
+    public void UpdateWave(GladiatorBT ennemy)
+    {
+        ennemies.Remove(ennemy);
+        if (ennemies.Count <= 0)
+        {
+            newWave();
+        }
+    }
+    
+    public void ResetWave()
+    {
+        waveNbr = 0;
+        foreach (var ennemy in ennemies)
+        {
+            try
+            {
+                ennemies.Remove(ennemy);
+                DestroyImmediate(ennemy.GetComponent<GameObject>());
+            }
+            catch {}
+            if (ennemies.Count <= 0)
+            {
+                break;
+            }
+        }
+        ennemies = new List<GladiatorBT>();
+    }
+    
     private void newWave()
     {
+        ennemies = new List<GladiatorBT>();
         currentWave = new Wave(waveNbr);
         for (int i = 0; i < currentWave.GetNbr(); i++)
         {
             var go = Instantiate(ennemyPrefab);
             go.GetComponent<GladiatorBT>().SetStat(currentWave.GetStats());
             go.transform.position = spawnPoints[Random.Range(0, spawnPoints.Count)].position;
+            ennemies.Add(go.GetComponent<GladiatorBT>());
         }
         waveNbr++;
+    }
+
+    public void AddPlayerXp()
+    {
+        player.GetStats().AddXp();
     }
 }
