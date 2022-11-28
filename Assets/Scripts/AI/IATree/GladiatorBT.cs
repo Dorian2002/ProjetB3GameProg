@@ -81,8 +81,11 @@ public class GladiatorBT : Tree
 
     private void OnDestroy()
     {
-        var xp = Instantiate(Resources.Load("Prefabs/xp")as GameObject);
-        xp.transform.position = new Vector3(transform.position.x, xp.transform.position.y, transform.position.z);
-        GameManager.GM.UpdateWave(this);
+        if (_stats.GetHp() <= 0)
+        {
+            var xp = Instantiate(Resources.Load("Prefabs/xp")as GameObject);
+            xp.transform.position = new Vector3(transform.position.x, xp.transform.position.y, transform.position.z);
+            GameManager.GM.UpdateWave(this);
+        }
     }
 }

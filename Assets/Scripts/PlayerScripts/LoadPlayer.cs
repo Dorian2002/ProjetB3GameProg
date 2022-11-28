@@ -8,6 +8,6 @@ public class LoadPlayer : MonoBehaviour
     private GameObject player;
     private void Start()
     {
-        player = Instantiate(Resources.Load("Prefabs/Player") as GameObject);
+        
     }
 }

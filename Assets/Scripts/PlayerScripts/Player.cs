@@ -25,7 +25,10 @@ namespace PlayerScripts
 
         private void OnDestroy()
         {
-            GameManager.GM.GameOver();
+            if (stats.GetHp() <= 0)
+            {
+                GameManager.GM.GameOver();
+            }
         }
 
         void Update()

@@ -183,5 +183,38 @@ PrefabInstance:
       propertyPath: m_Name
       value: Arena1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 8987440500805520838, guid: bb30946367ea71d4b9f58f4549be7137, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8987440500805520838, guid: bb30946367ea71d4b9f58f4549be7137, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8987440501171817769, guid: bb30946367ea71d4b9f58f4549be7137, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8987440501171817769, guid: bb30946367ea71d4b9f58f4549be7137, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8987440501869934050, guid: bb30946367ea71d4b9f58f4549be7137, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8987440501869934050, guid: bb30946367ea71d4b9f58f4549be7137, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8987440502014914956, guid: bb30946367ea71d4b9f58f4549be7137, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8987440502014914956, guid: bb30946367ea71d4b9f58f4549be7137, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.4
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 8987440500934405434, guid: bb30946367ea71d4b9f58f4549be7137, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: bb30946367ea71d4b9f58f4549be7137, type: 3}

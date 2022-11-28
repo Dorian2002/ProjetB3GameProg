@@ -69,7 +69,10 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
-        
+        GameManager.GM.ResetWave();
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+        SceneManager.LoadSceneAsync("Menu");
     }
 
     public bool IsGameOver()
@@ -79,6 +82,7 @@ public class GameManager : MonoBehaviour
 
     public void GetSpawnPointsAndWave()
     {
+        player = Instantiate(Resources.Load("Prefabs/Player") as GameObject).GetComponent<Player>();
         spawnPoints = new List<Transform>();
         spawnPoints.Add(GameObject.Find("spawnPoint1").transform);
         spawnPoints.Add(GameObject.Find("spawnPoint2").transform);
@@ -99,19 +103,6 @@ public class GameManager : MonoBehaviour
     public void ResetWave()
     {
         waveNbr = 0;
-        foreach (var ennemy in ennemies)
-        {
-            try
-            {
-                ennemies.Remove(ennemy);
-                DestroyImmediate(ennemy.gameObject);
-            }
-            catch {}
-            if (ennemies.Count <= 0)
-            {
-                break;
-            }
-        }
         ennemies = new List<GladiatorBT>();
     }
     

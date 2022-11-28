@@ -28,7 +28,7 @@ namespace PlayerScripts
                 stats.Damage(OwnerStats.GetDamage());
                 if (stats.GetHp() <= 0)
                 {
-                    Destroy(other.gameObject);
+                    Destroy(other.GetComponentInParent<Player>().gameObject);
                 }
             }
             if (OwnerStats.GetOwner().Equals("Player") && tag.Equals("Ennemy"))
