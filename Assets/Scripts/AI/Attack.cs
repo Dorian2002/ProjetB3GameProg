@@ -23,7 +23,7 @@ public class Attack : Node
         // slerp to the desired rotation over time
         _self.rotation = Quaternion.Slerp(_self.rotation, rot, 10 * Time.deltaTime);
         
-        _animator.SetBool("Glaive&Shield_Attack1", true);
+        _animator.Play("Glaive&Shield_Attack1");
         state = NodeState.SUCCESS;
         return state;
     }

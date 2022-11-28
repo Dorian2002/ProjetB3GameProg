@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
     private Wave currentWave;
     private int waveNbr;
     private List<GladiatorBT> ennemies;
+    private GameObject arenaObject;
     public KeyCode jump {get; set;}
     public KeyCode forward {get; set;}
     public KeyCode backward {get; set;}
@@ -36,6 +37,7 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
+        arenaObject = Resources.Load<GameObject>("Prefabs/Arena1");
         Assert.IsNotNull(ennemyPrefab);
         ennemies = new List<GladiatorBT>();
         waveNbr = 0;
@@ -59,11 +61,10 @@ public class GameManager : MonoBehaviour
         capacity3 = (KeyCode) System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("capacity3Key", "R"));
     }
 
-    private IEnumerator LoadArena()
+    public void LoadArena()
     {
-        AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(arena);
-        asyncOperation.allowSceneActivation = true;
-        yield return null;
+        Instantiate(arenaObject);
+        arenaObject = null;
     }
 
     public void GameOver()
@@ -103,7 +104,7 @@ public class GameManager : MonoBehaviour
             try
             {
                 ennemies.Remove(ennemy);
-                DestroyImmediate(ennemy.GetComponent<GameObject>());
+                DestroyImmediate(ennemy.gameObject);
             }
             catch {}
             if (ennemies.Count <= 0)
