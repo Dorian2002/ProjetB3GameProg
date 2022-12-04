@@ -450,3 +450,4 @@ MonoBehaviour:
   agent: {fileID: 8953044026416107978}
   animator: {fileID: 0}
   hands: {fileID: 2788913095550916116}
+  healthBar: {fileID: 4286136009774177577}

@@ -19,7 +19,7 @@ public class GladiatorBT : Tree
     [SerializeField] private static float attackRange=1.8f;
     [SerializeField] private static float walkRadius=12f;
     public override EntityStats _stats { get; set; }
-    public override Image healthBar { get; set; }
+    [SerializeField] private Image healthBar;
     public override Transform player { get; set; }
 
     protected override Node SetUpTree()
@@ -45,6 +45,13 @@ public class GladiatorBT : Tree
     {
         base.Start();
         player = GameManager.GM.player.transform;
+    }
+
+    void Update()
+    {
+        float filler = (float)_stats.GetHp() / _stats.GetHpMax();
+        healthBar.fillAmount = filler;
+        base.Update();
     }
     
     public static float GetAttackRange()
